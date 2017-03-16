@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Результаты Анализа Страницы</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" type="text/css" href="css/datatables.css"/>
+    <link rel="stylesheet" type="text/css" href="css/responsive.dataTables.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script type="text/javascript" src="js/datatables.js"></script>
+    <script type="text/javascript" src="js/dataTables.responsive.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+    <script>
+        var chartData = generateChartData();
+
+        var chart = AmCharts.makeChart("chartdiv", {
+            "type": "serial",
+            "theme": "light",
+            "legend": {
+                "useGraphSettings": true
+            },
+            "dataProvider": chartData,
+            "synchronizeGrid": true,
+            "valueAxes": [{
+                "id": "v1",
+                "axisColor": "#FF6600",
+                "axisThickness": 2,
+                "axisAlpha": 1,
+                "position": "left"
+            }, {
+                "id": "v2",
+                "axisColor": "#FCD202",
+                "axisThickness": 2,
+                "axisAlpha": 1,
+                "position": "right"
+            }, {
+                "id": "v3",
+                "axisColor": "#B0DE09",
+                "axisThickness": 2,
+                "gridAlpha": 0,
+                "offset": 50,
+                "axisAlpha": 1,
+                "position": "left"
+            }],
+            "graphs": [{
+                "valueAxis": "v1",
+                "lineColor": "#FF6600",
+                "bullet": "round",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "red line",
+                "valueField": "visits",
+                "fillAlphas": 0
+            }, {
+                "valueAxis": "v2",
+                "lineColor": "#FCD202",
+                "bullet": "square",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "yellow line",
+                "valueField": "hits",
+                "fillAlphas": 0
+            }, {
+                "valueAxis": "v3",
+                "lineColor": "#B0DE09",
+                "bullet": "triangleUp",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "green line",
+                "valueField": "views",
+                "fillAlphas": 0
+            }],
+            "chartScrollbar": {},
+            "chartCursor": {
+                "cursorPosition": "mouse"
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "parseDates": true,
+                "axisColor": "#DADADA",
+                "minorGridEnabled": true
+            },
+            "export": {
+                "enabled": true,
+                "position": "bottom-right"
+            }
+        });
+
+        chart.addListener("dataUpdated", zoomChart);
+        zoomChart();
+
+
+        // generate some random data, quite different range
+        function generateChartData() {
+            var chartData = [];
+            var firstDate = new Date();
+            firstDate.setDate(firstDate.getDate() - 100);
+
+            for (var i = 0; i < 100; i++) {
+                // we create date objects here. In your data, you can have date strings
+                // and then set format of your dates using chart.dataDateFormat property,
+                // however when possible, use date objects, as this will speed up chart rendering.
+                var newDate = new Date(firstDate);
+                newDate.setDate(newDate.getDate() + i);
+
+                var visits = Math.round(Math.sin(i * 5) * i);
+                var hits = Math.round(Math.random() * 80) + 500 + i * 3;
+                var views = Math.round(Math.random() * 6000) + i * 4;
+
+                chartData.push({
+                    date: newDate,
+                    visits: visits,
+                    hits: hits,
+                    views: views
+                });
+            }
+            return chartData;
+        }
+
+        function zoomChart() {
+            chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
+        }
+
+    </script>
+</head>
+<body>
+<div class="wrap-menu"></div>
+<header>
+    <div class="wrapper">
+
+        <div class="left-burger">
+
+        </div>
+
+        <a href="#" class="logo"><img src="img/logo.svg" alt=""></a>
+
+        <div class="menu">
+            <div class="close-menu"></div>
+            <ul class="menu">
+
+                <li class="active"><a href="">Инструменты</a></li>
+                <li><a href="">Панель вебмастера</a></li>
+                <li class="has-child">
+                    <a href="">Новости</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Поисковые системы</a></li>
+                        <li><a href="#">Социальные сети</a></li>
+                        <li><a href="#">Мобильный поиск</a></li>
+                        <li><a href="#">Контекстные медиа</a></li>
+                        <li><a href="#">Доменные зоны</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <a href="">Статьи</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Поисковые системы</a></li>
+                        <li><a href="#">Социальные сети</a></li>
+                        <li><a href="#">Мобильный поиск</a></li>
+                        <li><a href="#">Контекстные медиа</a></li>
+                        <li><a href="#">Доменные зоны</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <a href="">Еще</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Поисковые системы</a></li>
+                        <li><a href="#">Социальные сети</a></li>
+                        <li><a href="#">Мобильный поиск</a></li>
+                        <li><a href="#">Контекстные медиа</a></li>
+                        <li><a href="#">Доменные зоны</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- <div class="user">
+                <img src="img/user-menu.png" alt="">
+                <div class="name">
+                    <a href="#">Константин</a>
+                    <ul class="sub-menu">
+                        <li><a href="#"><p>Профиль</p></a></li>
+                        <li><a href="#"><p>Сообщения</p> <p><i>0</i> (127)</p></a></li>
+                        <li><a href="#"><p>Баннеры</p></a></li>
+                        <li><a href="#"><p>Баланс</p> <p><i>300,00 Р</i></p></a></li>
+                        <li><a href="#"><p><b>Выход</b></p></a></li>
+                    </ul>
+                </div>
+            </div> -->
+
+            <a href="#" class="login">Вход</a>
+
+            <div class="burger">
+                <ul class="sub-menu">
+                    <div class="vert">
+                        <li>
+                            <span>Оптимизация и SEO</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Анализ сайта</a></li>
+                                <li><a href="#">Анализ контента</a></li>
+                                <li><a href="#">Оценка стоимости ссылки с сайта</a></li>
+                                <li><a href="#">Генератор ключевых слов с сайта</a></li>
+                                <li><a href="#">Генератор ключевых слов с текста</a></li>
+                                <li><a href="#">Проверка наличия обратной ссылки</a></li>
+                                <li><a href="#">Информеры апдейтов</a></li>
+                                <li><a href="#">Генератор уникальных ссылок</a></li>
+                                <li><a href="#">Сайт глазами поискового робота</a></li>
+                                <li><a href="#">Проверка перенаправлений сайта</a></li>
+                                <li><a href="#">Генератор статических URL</a></li>
+                                <li><a href="#">Анализ внешних и внутренних ссылок страницы</a></li>
+                                <li><a href="#">Генератор robots.txt</a></li>
+                                <li><a href="#">Генератор мета-тегов</a></li>
+                                <li><a href="#">Скриншот сайта</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Браузер и IP</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Генератор паролей</a></li>
+                                <li><a href="#">Информер IP адреса</a></li>
+                                <li><a href="#">Бесплатные прокси </a></li>
+                                <li><a href="#">Узнать свой IP</a></li>
+                                <li><a href="#">Скорость соединения с интернет</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="vert">
+                        <li>
+                            <span>Рейтинг сайта</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Информер PR и ТИЦ</a></li>
+                                <li><a href="#">Массовая проверка ТИЦ и PR</a></li>
+                                <li><a href="#">Проверка Google PageRank по датацентрам</a></li>
+                                <li><a href="#">Массовая проверка посещаемости</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Работа со страницами</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Извлечение ссылок со страницы</a></li>
+                                <li><a href="#">Извлечение E-Mail адресов</a></li>
+                                <li><a href="#">Генератор иконки FavIcon</a></li>
+                                <li><a href="#">Нанесение текста на изображение</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>HTML, CSS и JS</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Кодирование и декодирование URL</a></li>
+                                <li><a href="#">Зашифровка HTML в код JavaScript</a></li>
+                                <li><a href="#">Упаковка JavaScript</a></li>
+                                <li><a href="#">Объединение изображений</a></li>
+                                <li><a href="#">Шифрование строк</a></li>
+                                <li><a href="#">Экранирование спецсимволов</a></li>
+                                <li><a href="#">Упаковка CSS</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    <div class="vert">
+                        <li>
+                            <span>Работа с текстом</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Сравнение схожести текста</a></li>
+                                <li><a href="#">Транслит текста</a></li>
+                                <li><a href="#">Генератор заголовков</a></li>
+                                <li><a href="#">Кодирование текста в Base64</a></li>
+                                <li><a href="#">Подсчет длины текста</a></li>
+                                <li><a href="#">Удаление дубликатов строк</a></li>
+                                <li><a href="#">Генератор опечаток</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Информация о сервере</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">Узнать IP сайта</a></li>
+                                <li><a href="#">Массовая проверка скорости сайта</a></li>
+                                <li><a href="#">Проверка перенаправлений сайта</a></li>
+                                <li><a href="#">Узнать сервер сайта</a></li>
+                                <li><a href="#">Проверка ответа сервера</a></li>
+                                <li><a href="#">Проверка Ping и Tracerout</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Информация о домене</span>
+                            <ul class="sub-menu">
+                                <li><a href="#">WHOIS домена</a></li>
+                                <li><a href="#">WHOIS IP сайта</a></li>
+                                <li><a href="#">Массовая проверка доменов на занятость</a></li>
+                                <li><a href="#">Конвертер Punycode</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<header id="nav-fixed" class="nav-fixed">
+    <div class="menu">
+        <ul class="menu">
+
+            <li><a href="#blocks-1" class="menus-lists active" href="">Сервер</a></li>
+            <li><a href="#blocks-2" class="menus-lists" href="">Домен</a></li>
+            <li><a href="#blocks-3" class="menus-lists" href="">Основные показатели</a></li>
+            <li><a href="#blocks-4" class="menus-lists" href="">Каталоги</a></li>
+            <li><a href="#blocks-5" class="menus-lists" href="">Оптимизация</a></li>
+            <li><a href="#blocks-6" class="menus-lists" href="">Поисковая выдача</a></li>
+            <li><a href="#blocks-7" class="menus-lists" href="">Трафик</a></li>
+            <li><a href="#blocks-8" class="menus-lists" href="">Ссылочный профиль</a></li>
+        </ul>
+
+    </div>
+</header>
+<div class="wrapper">
+    <div class="bread">
+        <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Инструменты</a></li>
+            <li><span>Анализ сайта</span></li>
+        </ul>
+    </div>
+    <div class="pagetitle"><h1>Анализ сайта</h1>
+        <div class="play-btn">
+            <div class="help">Смотреть возможности инструмента</div>
+        </div>
+    </div>
+    <main class="main">
+        <div class="analysis">
+            <form action="">
+                <input type="text" name="domain" placeholder="Введите домен">
+                <input type="submit" value="Выполнить">
+            </form>
+            <div class="example">Например, <a href="#">seogift.ru</a></div>
+        </div>
+
+        <div class="check_site">
+            <div class="result">
+                <div class="result__text">
+                    <p>seogift.ru</p>
+                    <p class="result__text__inside">Анализ сайта и инструменты <br>
+                        для оптимизатора, проверить сайт</p>
+                    <p>Следующее обновление данных через<br>
+                        <b>4</b> дня <b>23:56:45</b></p>
+                    <a class="btn-reg" href="#">Регистрация</a>
+                    <p>Зарегистрируйтесь, чтобы не ждать</p>
+                </div>
+            </div>
+            <ul class="result__data">
+                <li>Размер страницы <span>18.34 Kb</span></li>
+                <li>Кодировка <span>WINDOWS-1251</span></li>
+                <li>Скорость загрузки <span>401.49 Kb/s</span></li>
+                <li>Время загрузки <span>0.05 sec</span></li>
+            </ul>
+        </div>
+
+        <div id="blocks-1" class="section server">
+            <h2>Сервер</h2>
+            <ul>
+                <li>Сервер <span>nginx/0.7.67</span></li>
+                <li class="drop-row" ><a class="" href="#">Сервер сайта </a>
+                    <span>mrbig2010.jhfree.ne</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class="drop-row"><a class="" href="#">IP сайта </a>
+                    <span>5.135.213.237   <a href="#" class="links-span">все сайты на этом IP</a></span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p>
+                    </li>
+                <li class="drop-row"><a class="" href="#">Перенаправление </a>
+                    <span>нет</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class="drop-row"><a class="" href="#">Расположение датацентра </a>
+                    <span class="country">France</span><img class="flags" src="../img/france.svg">
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+        </div>
+        <div class="banner link bold">
+            <img src="../img/banner-goGet.png">
+            <span class="banner_text"><span>Отличный</span> <span><strong><a href="#">заработок</a></strong></span> <span>с сайта seogift.ru в <span><strong>42 600 рублей</strong></span>, продавая вечные ссылки!</span></span>
+        </div>
+        <div id="blocks-2" class="section domen">
+            <h2>Домен</h2>
+            <ul>
+                <li>Регистратор <span>REGRU-RU.7.67</span></li>
+                <li>Дата регистрации
+                    <span>2009-12-15</span></li>
+                <li class="drop-row"><a class="domen__age" href="#">Возраст домена</a>
+                    <span>6 лет, 3 месяца, 5 дней</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class="drop-row"><a href="#">Регистрация домена истекает истекает</a>
+                    <span>2016-12-15</span>
+                    <p class="drop-inner">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci distinctio incidunt natus neque non obcaecati perferendis placeat praesentium suscipit! Ad deleniti doloribus illo in officiis.</p>
+                </li>
+                <li>Осталось до окончания (дней)
+                    <span class="country">284</span></li>
+            </ul>
+        </div>
+        <div class="banner link bold">
+            <img src="../img/banner-telder.png">
+            <span class="banner_text"><span>Продай свой сайт seogift.ru на бирже</span> <a
+                    href="#"> Telderi.ru</a> <span><strong>за 319 500 рублей</strong></span></span>
+        </div>
+        <div id="blocks-3" class="section main__showing">
+            <h2>Основные показатели</h2>
+            <ul>
+                <li>Яндекс тИЦ <span>170</span></li>
+                <li>Яндекс Rank
+                    <span>4 из 6</span></li>
+                <li>Google PageRank
+                    <span>4 из 10</span></li>
+                <li>Склейка домена
+                    <span>Нет</span></li>
+            </ul>
+            <div class="showing__tic">
+                <img src="../img/showing_tic.png">
+                <textarea>
+                    <!-- Seogift.ru информер --><a href="http://dev.seogift.ru" target="_blank" title="Счетчик ТИЦ">
+                    <img border="0" src="http://dev.seogift.ru/informer-images/3/image-270.tif" alt="Счетчик ТИЦ">
+                    </a><!--Seogift.ru информер -->
+                </textarea>
+            </div>
+            <div class="header-chart">История изменения показателей</div>
+            <div id="chartdiv"></div>
+        </div>
+        <div  id="blocks-4" class="section catalog">
+            <h2>Каталоги</h2>
+            <ul>
+                <li class='drop-row'><a class="catalog__yandex" href="">Яндекс.Каталог</a> <a href="#" class="link-right">Есть</a>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a class="catalog__dmoz" href="">DMOZ</a>
+                    <a href="#" class="link-right">Посмотреть</a>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a class="catalog__mail" href="#">Mail.ru</a>
+                    <a href="#" class="link-right">Посмотреть</a>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+        </div>
+        <div  id="blocks-5" class="section optimization">
+            <h2>Оптимизация</h2>
+            <p class="meta-tags">Мета-теги страницы</p>
+            <ul>
+                <li class='drop-row'><p class="opt-tittle" >Tittle</p>
+                    <p class="drop-inner-show">Анализ сайта и инструменты для оптимизатора, проверить сайт. Регистрация в каталогах, бесплатный
+                        аудит и оптимизация вашего сайта. SEO-инструменты для оптимизатора, копирайтера.</p></li>
+                <li class='drop-row'><p class="opt-tittle" >Description</p>
+                    <p class="drop-inner-show">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row border'><p class="opt-tittle" >Keywords</p>
+                    <p class="drop-inner-show">Анализ сайта, инструменты для оптимизатора</p></li>
+            </ul>
+            <div class="tags_page">
+                <p>Теги страницы</p>
+                <p class="opt-tittle">H1</p>
+                <p id="drop-htag" class="drop-inner-show">Анализ сайта</p>
+            </div>
+
+            <div class="links_page">
+                <div class="inside_links">
+                    <p class="bold">Внутренние ссылки</p>
+                    <p class="index_inside">Индексируется —  23, не индексируется —  4</p>
+                </div>
+            </div>
+            <ul id="optimization_first_list" class="inside_links__items">
+                <li><div><span class="number">1.</span> Главная</div>
+                    <p class="drop-inner-show inside_links__left">http://seogift.ru/</p></li>
+                <li><div><span class="number">2.</span> SEO-инструменты</div>
+                    <p class="drop-inner-show inside_links__left">http://seogift.ru/seotools/</p>
+                <p class="inside_links__right">noindex, nofollow</p></li>
+                <li><div><span class="number">3.</span> Панель оптимизатора</div>
+                    <p class="drop-inner-show inside_links__left">http://seogift.ru/seopanel/</p></li>
+                <li class="links-hiddens"><div><span class="number">4.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li class="links-hiddens"><div><span class="number">5.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li class="links-hiddens"><div><span class="number">6.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+            </ul>
+            <a id="optimization_first_links" class="btn__show_all">Показать все</a>
+            <div class="links_page">
+                <div class="inside_links">
+                    <p>Внешние ссылки</p>
+                    <p class="index_inside">Индексируется —  12, не индексируется —  3</p>
+                </div>
+            </div>
+            <ul id="optimization_second_list" class="inside_links__items">
+                <li><div><span class="number">1.</span>  Регулярные выражения в работе маркетолога</div>
+                    <p class="drop-inner-show inside_links__left">http://odesseo.com.ua/regulyarnyie-vyirazheniya/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li><div><span class="number">2.</span>  Расслабься: это всего лишь интернет (подборка SEO приколов)</div>
+                    <p class="drop-inner-show inside_links__left">http://seo-zona.ru/rasslabsya-eto-vsego-lish-internet-2015-06-27.html/</p>
+                    </li>
+                <li><div><span class="number">3.</span>  Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li class="links-hiddens"><div><span class="number">4.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li class="links-hiddens"><div><span class="number">5.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+                <li class="links-hiddens"><div><span class="number">6.</span> Повышение эффективности интернет-рекламы: кому поручить</div>
+                    <p class="drop-inner-show inside_links__left">http://kom-dir.ru/article/1094-povyshenie-effektivnosti-internet-reklamy/</p>
+                    <p class="drop-inner-show inside_links__right">nofollow</p></li>
+            </ul>
+            <a id="optimization_second_links" class="btn__show_all" href="">Показать все</a>
+
+            <div class="load-pages">Скорость загрузки страницы</div>
+            <ul class="speed_load_page">
+                <li class="left"><p  class="speed_load_page__left">Страница подключает ресурсов</p>
+                    <p class="speed_load_page__right">27</p></li>
+                <li class="right"><p class="speed_load_page__left">хостов</p><p class="speed_load_page__right">34</p>
+                </li>
+                <li><p class="speed_load_page__left">Общий размер запроса</p>
+                    <p class="speed_load_page__right">8.68 Kb</p></li>
+                <li><p class="speed_load_page__left">Общий размер изображений на странице</p>
+                    <p class="speed_load_page__right">638.17 Kb</p></li>
+                <li class="left"><p  class="speed_load_page__left">Всего CSS файлов подключено</p>
+                    <p class="speed_load_page__right">27</p></li>
+                <li class="right"><p class="speed_load_page__left">общим размером</p><p class="speed_load_page__right">237.78 Kb</p>
+                </li>
+                <li class="left"><p  class="speed_load_page__left">Всего JavaScript файлов подключенов</p>
+                    <p class="speed_load_page__right">27</p></li>
+                <li class="right"><p class="speed_load_page__left">общим размером</p><p class="speed_load_page__right">237.78 Kb</p>
+                </li>
+                <li><p class="speed_load_page__left">Размер остальных ресурсов</p>
+                    <p class="speed_load_page__right">2.26 Kb</p></li>
+                <li><p class="speed_load_page__left">Общая скорость загрузки страницы</p>
+                    <p class="speed_load_page__right">65%</p></li>
+            </ul>
+
+            <div class="answer-server">Ответ сервара страницы</div>
+            <textarea class="textarea-every">
+HTTP/1.1 200 OK
+Server: nginx2
+Date: Mon, 07 Mar 2016 10:56:39 GMT
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 07 Mar 2016 10:56:39 GMT
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 07 Mar 2016 10:56:39 GMT
+            </textarea>
+            <div class="file-robots">Файл robots.txt</div>
+            <textarea class="textarea-every">
+User-Agent:*
+Disallow: /open/
+Disallow: /feedback/
+User-Agent: *
+Disallow: /open/
+Disallow: /feedback
+User-Agent: *
+Disallow: /open/
+Disallow: /feedback</textarea>
+            <p class="links-after-robots">Проверить на <a href="#">Яндекс.Вебмастер</a></p>
+            <div class="more-info">Дополнительная информация</div>
+            <ul class="more-info__list">
+                <li><a href="#">История сайта</a></li>
+                <li><a href="#">Поиск плагиата</a></li>
+                <li><a href="#">Проверка на вирусы в Яндексе</a></li>
+                <li><a href="#">Проверка валидности HTML</a></li>
+                <li><a href="#">Проверка валидности CSS</a></li>
+                <li><a href="#">Проверка орфографии</a></li>
+                <li><a href="#">История владельцев домена</a></li>
+                <li><a href="#">Кэш страницы в Google</a></li>
+            </ul>
+        </div>
+        <div id="blocks-6" class="section search_extradition">
+            <h2>Поисковая выдача</h2>
+            <div class="yandex">Яндекс</div>
+            <ul>
+                <li class='drop-row'><a href="#">Факион</a>
+                <img src="../img/faciov.png">
+                    <p  class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a href="#">Быстрые ссылки</a>
+                    <a href="#" class="link-right">Есть</a>
+                    <p  class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a href="#">Адрес организации</a>
+                    <a href="#" class="link-right">Есть</a>
+                    <p  class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <div class="index">Индексация</div>
+            <ul>
+                <li class='drop-row'><a href="#">Яндекс</a>
+                <a href="#" class="link-right">Посмотреть</a>
+                    <p  class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a href="#">Google</a>
+                    <a href="#" class="link-right">Посмотреть</a>
+                    <p  class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <div class="empty"></div>
+            <div class="sematic_core">Семантическое ядро</div>
+            <div class="empty"></div>
+            <table id="table-first" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Слово</th>
+                    <th>Яндекс</th>
+                    <th>Google</th>
+                    <th>Показов</th>
+                    <th>Видимость</th>
+
+                </tr>
+                </thead>
+                <!--<tfoot>
+                <tr>
+                    <th>Слово</th>
+                    <th>Яндекс</th>
+                    <th>Google</th>
+                    <th>Показов</th>
+                    <th>Видимость</th>
+
+                </tr>
+                </tfoot>-->
+                <tbody>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td>Development Lead</td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                <tr>
+                    <td>Анализ сайта</td>
+                    <td class="links-tables"><a href="#">23</a></td>
+                    <td class="links-tables"><a href="#">12</a></td>
+                    <td>1200</td>
+                    <td>3%</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="competitors_google">Конкуренты в Google</div>
+            <table id="second-table" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Домен</th>
+                    <th>Слов в топ20</th>
+                    <th>Поисковой Трафик</th>
+
+                </tr>
+                </thead>
+                <!--<tfoot>
+                <tr>
+                    <th>Слово</th>
+                    <th>Яндекс</th>
+                    <th>Google</th>
+                    <th>Показов</th>
+                    <th>Видимость</th>
+
+                </tr>
+                </tfoot>-->
+                <tbody>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>16</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>13</td>
+                    <td>1200</td>
+
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>22</td>
+                    <td>1200</td>
+
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>31</td>
+                    <td>1200</td>
+
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td><a href="">prcydot.ru</a></td>
+                    <td>12</td>
+                    <td>1200</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="banner link bold">
+                <img src="../img/semrush.png">
+                <span class="banner_text"><span>Узнай больше на</span> <a href="#"> SEMRush</a> </span>
+            </div>
+        </div>
+        <div id="blocks-7" class="section trafic">
+            <h2>Трафик</h2>
+            <div class="alexa">Alexa</div>
+            <ul>
+                <li class='drop-row'><a href="#">Место в интернете</a>
+                    <span>124000</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a href="#">Место в стране Россия</a>
+                    <span>34000</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <img src="../img/banner-alexa.png">
+            <div class="liveinternet">Liveinternet</div>
+            <ul>
+                <li class='drop-row'><a href="#">Посетителей в сутки</a>
+                    <span>4452</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <img class="live" src="../img/banner-liveinet.png">
+            <div class="semrush">Semrush</div>
+            <img class="smarsh" src="../img/banner-smarsh.png">
+        </div>
+        <div id="blocks-8" class="section links_profile">
+            <h2>Ссылочный профиль</h2>
+            <div class="majestic">Majestic</div>
+            <ul>
+                <li class='drop-row'><a href="#">Trust Flow</a>
+                    <span>42</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class=''><a >Citation Flow</a>
+                    <span>33</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+                <li class='drop-row'><a href="#">Домены-источники</a>
+                    <span>456</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <img src="../img/banner-majestic.png">
+            <div class="linkpad">Linkpad</div>
+            <ul>
+                <li class='drop-row'><a href="#">Домены-источники</a>
+                    <span>693</span>
+                    <p class="drop-inner">Регистрация в каталогах, бесплатный аудит и оптимизация вашего сайта. SEO-инструменты для
+                        оптимизатора, копирайтера. Анализ сайта и инструменты для оптимизатора, проверить сайт. Полный
+                        анализ сайта и инструменты для оптимизатора, проверить сайт.</p></li>
+            </ul>
+            <img src="../img/banner-linkpad.png">
+        </div>
+        <div class="analysis-pages">
+            <h2>Постоянная ссылка на анализ</h2>
+            <div class="showing__tic">
+                <img src="../img/14.jpg">
+                <textarea>
+<!-- Seogift.ru анализ --><a href="http://seogift.ru/tools/analiz-sajta/seogift.ru&aspcode=
+0a20af3e2ee83e3090ed164fecacb5d5" target="_blank" title="Анализ сайта">
+</a><!--Seogift.ru информер -->
+                </textarea>
+            </div>
+        </div>
+        <div class="banner">
+            <a href="#">
+                <img src="img/long-banner.png" alt="">
+            </a>
+        </div>
+        <div class="popular-tools">
+            <h2>Рекомендуемые инструменты</h2>
+            <ul>
+                <li><a href="#">Анализ сайта</a></li>
+                <li><a href="#">Анализ сайта</a></li>
+                <li><a href="#">Анализ сайта</a></li>
+                <li><a href="#">Анализ сайта</a></li>
+                <li><a href="#">Анализ сайта</a></li>
+                <li><a href="#">Анализ сайта</a></li>
+            </ul>
+        </div>
+        <div class="useful-services">
+            <div class="title">Полезные сервисы</div>
+            <ul>
+                <li>
+                    <img src="img/usef1.png" alt="">
+                    <div class="text">
+                        <a href="#">Выгодно продай свой сайт</a>
+                        <p>Продать сайт за 50 000 Р? Легко!</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/usef2.png" alt="">
+                    <div class="text">
+                        <a href="#">Создать сайт бесплатно</a>
+                        <p>Сайт за 5 минут - это реально
+                            с конструктором Wix</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/usef3.png" alt="">
+                    <div class="text">
+                        <a href="#">Сейчас "рулят" вечные ссылки</a>
+                        <p>Купля-продажа ссылок "навсегда"</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <aside class="aside">
+        <div class="yandextic">
+            <span>Яндекс Поиск</span>
+            <p>01.12.2015</p>
+            <span>Яндекс тИЦ</span>
+            <p>01.12.2015</p>
+        </div>
+        <div class="links">
+            <ul>
+                <li><img src="img/test.svg" alt=""><a href="#">Алая вспышка осветила силуэт </a></li>
+                <li><img src="img/test.svg" alt=""><a href="#">В вечернем свете волны</a></li>
+                <li><img src="img/test.svg" alt=""><a href="#">Возвращаться назад предстоял</a></li>
+                <li><img src="img/test.svg" alt=""><a href="#"><b>Едва осознав, что происходит</b></a></li>
+                <li><img src="img/test.svg" alt=""><a href="#">Из динамика над дверью</a></li>
+            </ul>
+            <a href="#" class="add">Добавить ссылку</a>
+        </div>
+        <div class="banners">
+            <div class="banner">
+                <a href="#">
+                    <img src="img/banner.png" alt="">
+                </a>
+                <a href="#" class="add">Добавить баннер</a>
+            </div>
+
+        </div>
+    </aside>
+</div>
+<footer>
+    <div class="f-menu">
+        <div class="wrapper">
+            <div class="f-menu-item">
+                <div class="item-title">Инструменты</div>
+                <ul>
+                    <li><a href="#">Анализ сайта</a></li>
+                    <li><a href="#">Анализ контента</a></li>
+                    <li><a href="#">Проверка ТИЦ</a></li>
+                    <li><a href="#">Узнать свой IP</a></li>
+                </ul>
+            </div>
+            <div class="f-menu-item">
+                <div class="item-title">Веб-мастеру</div>
+                <ul>
+                    <li><a href="#">Панель вебмастера</a></li>
+                    <li><a href="#">Апдейты</a></li>
+                </ul>
+            </div>
+            <div class="f-menu-item">
+                <div class="item-title">Статьи</div>
+                <ul>
+                    <li><a href="#">Поисковые системы</a></li>
+                    <li><a href="#">Интернет-маркетинг</a></li>
+                    <li><a href="#">Хостинг</a></li>
+                    <li><a href="#">Контекстная реклама</a></li>
+                    <li><a href="#">Копирайтин</a></li>
+                </ul>
+            </div>
+            <div class="f-menu-item">
+                <div class="item-title">Новости</div>
+                <ul>
+                    <li><a href="#">Сервисы</a></li>
+                    <li><a href="#">Поисковые системы</a></li>
+                </ul>
+            </div>
+            <div class="f-menu-item">
+                <div class="item-title">Компаниям</div>
+                <ul>
+                    <li><a href="#">Реклама на сайте</a></li>
+                    <li><a href="#">Витрина ссылок</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="f-menu-item">
+                <div class="item-title">Мы в соцсетях</div>
+                <div class="social">
+                    <a href="#" class="fb"></a>
+                    <a href="#" class="vk"></a>
+                    <a href="#" class="tw"></a>
+                    <a href="#" class="yt"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="wrapper">
+            <div class="text"><p>2009-2016 © Seogift.ru - инструменты для вебмастера</p></div>
+            <div class="copy-menu">
+                <ul>
+                    <li><a href="#">О сервисе</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                    <li><a href="#">Соглашение о конфиденциальности</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="payments">
+        <div class="wrapper">
+            <div class="items">
+                <ul>
+                    <li><img src="img/p1.svg" alt=""></li>
+                    <li><img src="img/p2.svg" alt=""></li>
+                    <li><img src="img/p3.svg" alt=""></li>
+                    <li><img src="img/p4.svg" alt=""></li>
+                    <li><img src="img/p5.svg" alt=""></li>
+                </ul>
+            </div>
+            <div class="grey-blocks">
+				<span class="grey"><!-- seogift.ru --><a href="http://seogift.ru/seo-counter/" target="_blank"
+                                                         title="Счетчик тиц"><img src="/seo-cntr-http://seogift.ru-26"
+                                                                                  border="0" alt="Счетчик тиц"></a>
+                    <!-- / seogift.ru -->
+
+                    <!--LiveInternet counter--><script type="text/javascript"><!--
+                    document.write("<a href='//www.liveinternet.ru/click' " +
+                        "target=_blank><img src='//counter.yadro.ru/hit?t16.1;r" +
+                        escape(document.referrer) + ((typeof(screen) == "undefined") ? "" :
+                            ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                                screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                        ";" + Math.random() +
+                        "' alt='' title='LiveInternet: показано число просмотров за 24" +
+                        " часа, посетителей за 24 часа и за сегодня' " +
+                        "border='0' width='88' height='31'><\/a>")
+                    //--></script><!--/LiveInternet-->
+
+
+				</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="wrap wrap-log">
+    <div class="pop-login">
+        <div class="close"></div>
+        <div class="p-title">Вход на сайт</div>
+        <form action="#">
+            <input type="text" placeholder="Логин">
+            <div class="eye">
+                <input type="password" placeholder="Пароль">
+                <div class="eye-inp"></div>
+            </div>
+            <input type="submit" value="Вход">
+        </form>
+        <div class="remeber">
+            <a href="#">Забыли пароль?</a>
+        </div>
+        <div class="p-title">Я новый пользователь</div>
+        <p>Чтобы полноценно пользоваться нашим сервисом, вам необходимо зарегистрироваться. Это просто и займет всего
+            одну минуту.</p>
+        <a href="#" class="registration">Регистрация</a>
+    </div>
+</div>
+
+<div class="videopopup">
+    <div class="video">
+        <div class="close"></div>
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/2RRY3OVqtwc?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI" frameborder="0"
+                allowfullscreen></iframe>
+    </div>
+</div>
+
+</body>
+</html>

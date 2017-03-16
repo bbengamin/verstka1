@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Формы инструментов</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="fonts/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+<div class="wrap-menu"></div>
+<header>
+	<div class="wrapper">
+		
+		<div class="left-burger">
+			
+		</div>
+
+		<a href="#" class="logo"><img src="img/logo.svg" alt=""></a>
+
+		<div class="menu">
+			<div class="close-menu"></div>
+			<ul class="menu">
+
+				<li><a href="">Инструменты</a></li>
+				<li><a href="">Панель вебмастера</a></li>
+				<li class="has-child">
+					<a href="">Новости</a>
+					<ul class="sub-menu">
+						<li><a href="#">Поисковые системы</a></li>
+						<li><a href="#">Социальные сети</a></li>
+						<li><a href="#">Мобильный поиск</a></li>
+						<li><a href="#">Контекстные медиа</a></li>
+						<li><a href="#">Доменные зоны</a></li>
+					</ul>
+				</li>
+				<li class="has-child">
+					<a href="">Статьи</a>
+					<ul class="sub-menu">
+						<li><a href="#">Поисковые системы</a></li>
+						<li><a href="#">Социальные сети</a></li>
+						<li><a href="#">Мобильный поиск</a></li>
+						<li><a href="#">Контекстные медиа</a></li>
+						<li><a href="#">Доменные зоны</a></li>
+					</ul>
+				</li>
+				<li class="has-child">
+					<a href="">Еще</a>
+					<ul class="sub-menu">
+						<li><a href="#">Поисковые системы</a></li>
+						<li><a href="#">Социальные сети</a></li>
+						<li><a href="#">Мобильный поиск</a></li>
+						<li><a href="#">Контекстные медиа</a></li>
+						<li><a href="#">Доменные зоны</a></li>
+					</ul>
+				</li>
+			</ul>
+
+			<!-- <div class="user">
+				<img src="img/user-menu.png" alt="">
+				<div class="name">
+					<a href="#">Константин</a>
+					<ul class="sub-menu">
+						<li><a href="#"><p>Профиль</p></a></li>
+						<li><a href="#"><p>Сообщения</p> <p><i>0</i> (127)</p></a></li>
+						<li><a href="#"><p>Баннеры</p></a></li>
+						<li><a href="#"><p>Баланс</p> <p><i>300,00 Р</i></p></a></li>
+						<li><a href="#"><p><b>Выход</b></p></a></li>
+					</ul>
+				</div>
+			</div> -->
+
+			<a href="#" class="login">Вход</a>
+
+			<div class="burger">
+				<ul class="sub-menu">
+					<div class="vert">
+						<li>
+							<span>Оптимизация и SEO</span>
+							<ul class="sub-menu">
+								<li><a href="#">Анализ сайта</a></li>
+								<li><a href="#">Анализ контента</a></li>
+								<li><a href="#">Оценка стоимости ссылки с сайта</a></li>
+								<li><a href="#">Генератор ключевых слов с сайта</a></li>
+								<li><a href="#">Генератор ключевых слов с текста</a></li>
+								<li><a href="#">Проверка наличия обратной ссылки</a></li>
+								<li><a href="#">Информеры апдейтов</a></li>
+								<li><a href="#">Генератор уникальных ссылок</a></li>
+								<li><a href="#">Сайт глазами поискового робота</a></li>
+								<li><a href="#">Проверка перенаправлений сайта</a></li>
+								<li><a href="#">Генератор статических URL</a></li>
+								<li><a href="#">Анализ внешних и внутренних ссылок страницы</a></li>
+								<li><a href="#">Генератор robots.txt</a></li>
+								<li><a href="#">Генератор мета-тегов</a></li>
+								<li><a href="#">Скриншот сайта</a></li>
+							</ul>
+						</li>
+						<li>
+							<span>Браузер и IP</span>
+							<ul class="sub-menu">
+								<li><a href="#">Генератор паролей</a></li>
+								<li><a href="#">Информер IP адреса</a></li>
+								<li><a href="#">Бесплатные прокси </a></li>
+								<li><a href="#">Узнать свой IP</a></li>
+								<li><a href="#">Скорость соединения с интернет</a></li>
+							</ul>
+						</li>
+					</div>
+					<div class="vert">
+						<li>
+							<span>Рейтинг сайта</span>
+							<ul class="sub-menu">
+								<li><a href="#">Информер PR и ТИЦ</a></li>
+								<li><a href="#">Массовая проверка ТИЦ и PR</a></li>
+								<li><a href="#">Проверка Google PageRank по датацентрам</a></li>
+								<li><a href="#">Массовая проверка посещаемости</a></li>
+							</ul>
+						</li>
+						<li>
+							<span>Работа со страницами</span>
+							<ul class="sub-menu">
+								<li><a href="#">Извлечение ссылок со страницы</a></li>
+								<li><a href="#">Извлечение E-Mail адресов</a></li>
+								<li><a href="#">Генератор иконки FavIcon</a></li>
+								<li><a href="#">Нанесение текста на изображение</a></li>
+							</ul>
+						</li>
+						<li>
+							<span>HTML, CSS и JS</span>
+							<ul class="sub-menu">
+								<li><a href="#">Кодирование и декодирование URL</a></li>
+								<li><a href="#">Зашифровка HTML в код JavaScript</a></li>
+								<li><a href="#">Упаковка JavaScript</a></li>
+								<li><a href="#">Объединение изображений</a></li>
+								<li><a href="#">Шифрование строк</a></li>
+								<li><a href="#">Экранирование спецсимволов</a></li>
+								<li><a href="#">Упаковка CSS</a></li>
+							</ul>
+						</li>
+					</div>
+					<div class="vert">
+						<li>
+							<span>Работа с текстом</span>
+							<ul class="sub-menu">
+								<li><a href="#">Сравнение схожести текста</a></li>
+								<li><a href="#">Транслит текста</a></li>
+								<li><a href="#">Генератор заголовков</a></li>
+								<li><a href="#">Кодирование текста в Base64</a></li>
+								<li><a href="#">Подсчет длины текста</a></li>
+								<li><a href="#">Удаление дубликатов строк</a></li>
+								<li><a href="#">Генератор опечаток</a></li>
+							</ul>
+						</li>
+						<li>
+							<span>Информация о сервере</span>
+							<ul class="sub-menu">
+								<li><a href="#">Узнать IP сайта</a></li>
+								<li><a href="#">Массовая проверка скорости сайта</a></li>
+								<li><a href="#">Проверка перенаправлений сайта</a></li>
+								<li><a href="#">Узнать сервер сайта</a></li>
+								<li><a href="#">Проверка ответа сервера</a></li>
+								<li><a href="#">Проверка Ping и Tracerout</a></li>
+							</ul>
+						</li>
+						<li>
+							<span>Информация о домене</span>
+							<ul class="sub-menu">
+								<li><a href="#">WHOIS домена</a></li>
+								<li><a href="#">WHOIS IP сайта</a></li>
+								<li><a href="#">Массовая проверка доменов на занятость</a></li>
+								<li><a href="#">Конвертер Punycode</a></li>
+							</ul>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="wrapper">
+
+	<main class="main">
+		
+		
+		<div class="list-sites">
+			<form action="#">
+				<textarea></textarea>
+				<div class="inputs">
+					<button class="start">Выполнить</button>
+					<button class="pause">Приостановить</button>
+					<button class="stop">Остановить</button>
+				</div>
+			</form>
+			<p>Список сайтов, не более 4 (например, <a href="#">seogift.ru</a>) <span>*</span></p>
+			<input id="inp3" type="checkbox" checked>
+			<label for="inp3"></label>
+			<input id="inp4" type="checkbox">
+			<label for="inp5"></label>
+		</div>
+
+		<div class="list-sites-one">
+			<form action="#">
+				<input type="text">
+			</form>
+			<p>Список сайтов, не более 4 (например, <a href="#">seogift.ru</a>) <span>*</span></p>
+		</div>
+
+		<div class="noindex">
+			<div class="row">
+				<input id="inp1" type="checkbox" checked>
+				<label for="inp1"></label>
+				<p>Не должна находиться в тэге <b>&lt;noindex&gt;</b></p>
+			</div>
+			<div class="row">
+				<input id="inp2" type="checkbox">
+				<label for="inp2"></label>
+				<p>Не должна находиться в тэге <b>&lt;noindex&gt;</b></p>
+			</div>
+		</div>
+
+		<div class="selects">
+			<select>
+				<option value="">Выбрать</option>
+				<option value="">Выбрать 1</option>
+				<option value="">Выбрать 2</option>
+			</select>
+			<div class="select">
+				<div class="selected">Выбрать</div>
+				<div class="options">
+					<div class="option">Выбрать 1</div>
+					<div class="option">Выбрать 2</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="files">
+			<input type="file" id="file">
+			<label for="file" class="file">Выбирите файл</label>
+			<p>Файл не выбран</p>
+		</div>
+
+		<div class="tables">
+			<ul class="thead">
+				<li>Яндекс Поиск</li>
+				<li>Яндекс тИЦ</li>
+				<li>Яндекс Каталог</li>
+				<li>Google Поиск</li>
+			</ul>
+			<ul>
+				<li>15.12.2018</li>
+				<li>15.12.2018</li>
+				<li>15.12.2018</li>
+				<li>15.12.2018</li>
+			</ul>
+			<ul>
+				<li>15.12.2018</li>
+				<li>—</li>
+				<li>15.12.2018</li>
+				<li>—</li>
+			</ul>
+			<ul>
+				<li>—</li>
+				<li>15.12.2018</li>
+				<li>15.12.2018</li>
+				<li>—</li>
+			</ul>
+			<ul>
+				<li>15.12.2018</li>
+				<li>15.12.2018</li>
+				<li>—</li>
+				<li>—</li>
+			</ul>
+		</div>
+
+		<div class="links">
+			<div class="b-title">Всего ссылок: 3</div>
+			<ul>
+				<li>
+					<div class="img"><img src="img/link-img.png" alt=""></div>
+					<div class="text">
+						<a href="#"><div class="title">Рекламная ссылка до 20 с.</div></a>
+						<a href="#" class="link"><img src="img/link-icon.svg" alt="">vesti.ru</a>
+						<p class="date">2015-08-29 11:28:36</p>
+					</div>
+				</li>
+				<li>
+					<div class="img"><img src="img/link-img.png" alt=""></div>
+					<div class="text">
+						<a href="#"><div class="title"><b>Рекламная ссылка до 20 с.</b></div></a>
+						<a href="#" class="link"><img src="img/link-icon.svg" alt="">vesti.ru</a>
+						<p class="date">2015-08-29 11:28:36</p>
+					</div>
+				</li>
+				<li>
+					<div class="img"><img src="img/link-img.png" alt=""></div>
+					<div class="text">
+						<a href="#"><div class="title">Рекламная ссылка до 20 с.</div></a>
+						<a href="#" class="link"><img src="img/link-icon.svg" alt="">vesti.ru</a>
+						<p class="date">2015-08-29 11:28:36</p>
+					</div>
+				</li>
+			</ul>
+			<a href="#" class="add">Добавить ссылку</a>
+		</div>
+		
+		<div class="left-sidebar">
+			<div class="b-title">Левый сайдбар 240х400</div>
+			<p>Расположение в левой части сайта под блоком рекламных ссылок.</p>
+			<div class="link-block">
+				<div class="img"><img src="img/left-sidebar.png" alt=""></div>
+				<div class="table">
+					<ul>
+						<li>
+							<p>Возможность загрузки баннера</p>
+							<p class="green">Да</p>
+						</li>
+						<li>
+							<p>Максимальный размер</p>
+							<p>170 Кb</p>
+						</li>
+						<li>
+							<p>Возможность указания гиперссылки на баннер</p>
+							<p class="red">Нет</p>
+						</li>
+						<li>
+							<p>Размеры рекламного места</p>
+							<p>240х400 px</p>
+						</li>
+						<li>
+							<p>Цена за 1000 показов</p>
+							<p class="no-used">Не используется</p>
+						</li>
+						<li>
+							<p>Цена за 1 день показов</p>
+							<p>300.00 ₽</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+	</main>
+
+	<aside class="aside">
+		<div class="yandextic">
+			<span>Яндекс Поиск</span>
+			<p>01.12.2015</p>
+			<span>Яндекс тИЦ</span>
+			<p>01.12.2015</p>
+		</div>
+		<div class="links">
+			<ul>
+				<li><img src="img/test.svg" alt=""><a href="#">Алая вспышка осветила силуэт </a></li>
+				<li><img src="img/test.svg" alt=""><a href="#">В вечернем свете волны</a></li>
+				<li><img src="img/test.svg" alt=""><a href="#">Возвращаться назад предстоял</a></li>
+				<li><img src="img/test.svg" alt=""><a href="#"><b>Едва осознав, что происходит</b></a></li>
+				<li><img src="img/test.svg" alt=""><a href="#">Из динамика над дверью</a></li>
+			</ul>
+			<a href="#" class="add">Добавить ссылку</a>
+		</div>
+		<div class="banners">
+			<div class="banner">
+				<a href="#">
+					<img src="img/banner.png" alt="">
+				</a>
+				<a href="#" class="add">Добавить баннер</a>
+			</div>
+			
+		</div>
+	</aside>
+</div>
+
+<footer>
+	<div class="f-menu">
+		<div class="wrapper">
+			<div class="f-menu-item">
+				<div class="item-title">Инструменты</div>
+				<ul>
+					<li><a href="#">Анализ сайта</a></li>
+					<li><a href="#">Анализ контента</a></li>
+					<li><a href="#">Проверка ТИЦ</a></li>
+					<li><a href="#">Узнать свой IP</a></li>
+				</ul>
+			</div>
+			<div class="f-menu-item">
+				<div class="item-title">Веб-мастеру</div>
+				<ul>
+					<li><a href="#">Панель вебмастера</a></li>
+					<li><a href="#">Апдейты</a></li>
+				</ul>
+			</div>
+			<div class="f-menu-item">
+				<div class="item-title">Статьи</div>
+				<ul>
+					<li><a href="#">Поисковые системы</a></li>
+					<li><a href="#">Интернет-маркетинг</a></li>
+					<li><a href="#">Хостинг</a></li>
+					<li><a href="#">Контекстная реклама</a></li>
+					<li><a href="#">Копирайтин</a></li>
+				</ul>
+			</div>
+			<div class="f-menu-item">
+				<div class="item-title">Новости</div>
+				<ul>
+					<li><a href="#">Сервисы</a></li>
+					<li><a href="#">Поисковые системы</a></li>
+				</ul>
+			</div>
+			<div class="f-menu-item">
+				<div class="item-title">Компаниям</div>
+				<ul>
+					<li><a href="#">Реклама на сайте</a></li>
+					<li><a href="#">Витрина ссылок</a></li>
+					<li><a href="#">Контакты</a></li>
+				</ul>
+			</div>
+			<div class="f-menu-item">
+				<div class="item-title">Мы в соцсетях</div>
+				<div class="social">
+					<a href="#" class="fb"></a>
+					<a href="#" class="vk"></a>
+					<a href="#" class="tw"></a>
+					<a href="#" class="yt"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">
+		<div class="wrapper">
+			<div class="text"><p>2009-2016 © Seogift.ru - инструменты для вебмастера</p></div>
+			<div class="copy-menu">
+				<ul>
+					<li><a href="#">О сервисе</a></li>
+					<li><a href="#">Пользовательское соглашение</a></li>
+					<li><a href="#">Соглашение о конфиденциальности</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="payments">
+		<div class="wrapper">
+			<div class="items">
+				<ul>
+					<li><img src="img/p1.svg" alt=""></li>
+					<li><img src="img/p2.svg" alt=""></li>
+					<li><img src="img/p3.svg" alt=""></li>
+					<li><img src="img/p4.svg" alt=""></li>
+					<li><img src="img/p5.svg" alt=""></li>
+				</ul>
+			</div>
+			<div class="grey-blocks">
+				<span class="grey"><!-- seogift.ru --><a href="http://seogift.ru/seo-counter/" target="_blank" title="Счетчик тиц"><img src="/seo-cntr-http://seogift.ru-26" border="0" alt="Счетчик тиц"></a><!-- / seogift.ru -->
+
+				<!--LiveInternet counter--><script type="text/javascript"><!--
+				document.write("<a href='//www.liveinternet.ru/click' "+
+				"target=_blank><img src='//counter.yadro.ru/hit?t16.1;r"+
+				escape(document.referrer)+((typeof(screen)=="undefined")?"":
+				";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+				screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+				";"+Math.random()+
+				"' alt='' title='LiveInternet: показано число просмотров за 24"+
+				" часа, посетителей за 24 часа и за сегодня' "+
+				"border='0' width='88' height='31'><\/a>")
+				//--></script><!--/LiveInternet-->
+
+
+				</span>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="wrap wrap-log">
+	<div class="pop-login">
+		<div class="close"></div>
+		<div class="p-title">Вход на сайт</div>
+		<form action="#">
+			<input type="text" placeholder="Логин">
+			<div class="eye">
+				<input type="password" placeholder="Пароль">
+				<div class="eye-inp"></div>
+			</div>
+			<input type="submit" value="Вход">
+		</form>
+		<div class="remeber">
+			<a href="#">Забыли пароль?</a>
+		</div>
+		<div class="p-title">Я новый пользователь</div>
+		<p>Чтобы полноценно пользоваться нашим сервисом, вам необходимо зарегистрироваться. Это просто и займет всего одну минуту.</p>
+		<a href="#" class="registration">Регистрация</a>
+	</div>
+</div>
+
+<div class="videopopup">
+	<div class="video">
+		<div class="close"></div>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/2RRY3OVqtwc?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+	
+</body>
+</html>
